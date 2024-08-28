@@ -1,6 +1,5 @@
 import { RequestHandler } from 'express';
 
-
 export enum postStatus {
     active,
     disabled

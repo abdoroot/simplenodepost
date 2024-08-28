@@ -15,8 +15,6 @@ export type UserRequestParam = {
     password: string //plain text
 }
 
-
-
 export function HandlerCreateUser(users: User[]): RequestHandler {
     return async (req, resp) => {
         try {
