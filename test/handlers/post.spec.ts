@@ -6,7 +6,10 @@ import { onlyUser } from "../../src/middleware/auth"
 import { CreateJwtToken } from "../../src/handlers/userHandler"
 
 describe("post routes", () => {
-    setup()
+    beforeAll(() => {
+        //load dotenv file
+        setup()
+    })
     var posts: postHandler.Post[] = []
     var singlePost: postHandler.Post = {
         id: 1,
