@@ -6,7 +6,7 @@ export enum postStatus {
     disabled
 }
 
-export interface Post {
+export type Post = {
     id: number
     status: postStatus
     title: string
@@ -14,18 +14,17 @@ export interface Post {
     Content: string
 }
 
-export function handleGetPost(posts: Post[]): RequestHandler {
+export function handleGetPosts(posts: Post[]): RequestHandler {
     return (req, resp) => {
         resp.status(200).send(posts)
     }
 }
 
-export function handleSingelPost(posts: Post[]): RequestHandler {
+export function handleGetSingelPost(posts: Post[]): RequestHandler {
     return (req, resp) => {
         const id = parseInt(req.params.id, 10);
         const post = posts.find(p => p.id === id);
 
-        console.log(post)
         if (post) {
             resp.status(200).send(post)
         } else {
@@ -46,6 +45,32 @@ export function handleCreatePost(posts: Post[]): RequestHandler {
             resp.status(201).send({
                 message: "Post added sucessfully"
             })
+        } catch (error: any) {
+            resp.status(500).send({
+                message: "internal server error",
+                error: error.message
+            })
+        }
+    }
+}
+
+export function handleDeletePost(posts: Post[]): RequestHandler {
+    return (req, resp) => {
+        try {
+            const id = parseInt(req.params.id, 10);
+            const post = posts.find(p => p.id === id);
+
+            if (!post) {
+                resp.status(404).send({
+                    message: "post not found"
+                })
+            } else {
+                let postIndex = posts.indexOf(post)
+                delete posts[postIndex]
+                resp.status(201).send({
+                    message: "Post deleted sucessfully"
+                })
+            }
         } catch (error: any) {
             resp.status(500).send({
                 message: "internal server error"
