@@ -1,3 +1,7 @@
-# copy .envexample to .env
-# npm run test or make test
-# npm run start or make test
+1. Copy .envexample to .env
+2. Run Tests
+    ```bash
+    npm run test or make test
+4. Start the Application
+   ```bash
+    npm run start or make test
