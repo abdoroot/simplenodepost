@@ -5,6 +5,7 @@ export enum postStatus {
     disabled
 }
 
+//type post
 export type Post = {
     id: number
     status: postStatus
