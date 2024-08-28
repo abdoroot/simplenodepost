@@ -11,14 +11,14 @@ if (!dotenv.config()) {
 }
 
 //in memory database
-var posts: postHandler.Post[] = []
-var users: userHandler.User[] = []
+const posts: postHandler.Post[] = []
+const users: userHandler.User[] = []
 
 const app = express()
 app.use(express.json(), setRequestId)
 const listenAddr = 3002
 
-var singlePost: postHandler.Post = {
+let singlePost: postHandler.Post = {
     id: 1,
     status: postHandler.postStatus.active,
     title: "lorem ispum",

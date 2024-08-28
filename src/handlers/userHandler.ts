@@ -82,7 +82,7 @@ export function HandlerLoginUser(users: User[]): RequestHandler {
 
 export function CreateJwtToken(userId: number, expiresIn: "1h" | "2h"): string {
     let secret = process.env.JWT_SECRET
-    var token = jwt.sign({
+    const token = jwt.sign({
         userId: userId
     }, secret as string, { expiresIn: expiresIn, algorithm: 'HS256' })
 
@@ -90,9 +90,9 @@ export function CreateJwtToken(userId: number, expiresIn: "1h" | "2h"): string {
 }
 
 export function isValidToken(token: string): boolean {
-    let secret = process.env.JWT_SECRET
+    const secret = process.env.JWT_SECRET
     try {
-        var decoded = jwt.verify(token, secret as string);
+        const decoded = jwt.verify(token, secret as string);
         if (decoded) {
             return true
         }

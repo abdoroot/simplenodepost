@@ -12,6 +12,15 @@ export default {
     },
     files: ["src/**/*.ts"],
     rules: {
-        semi: "off"
-    }
-}
+        semi: "off", // Semicolons are optional
+
+        // Code quality rules
+        'no-console': 'warn', // Warn when `console` statements are used
+        'curly': 'warn', // Enforce consistent brace style for all control statements
+        'eqeqeq': ['error', 'always'], // Enforce strict equality (`===` and `!==`)
+        'no-shadow': 'warn', // Warn on variable declarations from shadowing variables declared in the outer scope
+        'no-duplicate-imports': 'warn', // Disallow duplicate imports
+        'no-var': 'error', // Disallow usage of `var`, prefer `const` or `let`
+        'prefer-const': 'warn', // Suggest using `const` wherever possible
+    },
+};
