@@ -27,15 +27,19 @@ var singlePost: postHandler.Post = {
 
 posts.push(singlePost)
 
-app.get("/post", onlyUser, postHandler.handleGetPosts(posts))
-app.get("/post/:id", postHandler.handleGetSingelPost(posts))
-app.post("/post", postHandler.handleCreatePost(posts))
-app.delete("/post/:id", postHandler.handleDeletePost(posts))
-app.delete("/post/:id", postHandler.handleDeletePost(posts))
+
+let postRouter = express.Router()
+let userRouter = express.Router()
+postRouter.use(onlyUser)
+postRouter.get("/post", postHandler.handleGetPosts(posts))
+postRouter.get("/post/:id", postHandler.handleGetSingelPost(posts))
+postRouter.post("/post", postHandler.handleCreatePost(posts))
+postRouter.delete("/post/:id", postHandler.handleDeletePost(posts))
+postRouter.delete("/post/:id", postHandler.handleDeletePost(posts))
 
 //user login
-app.post("/user", userHandler.HandlerCreateUser(users))
-app.post("/user/login", userHandler.HandlerLoginUser(users))
+userRouter.post("/user", userHandler.HandlerCreateUser(users))
+userRouter.post("/user/login", userHandler.HandlerLoginUser(users))
 
 //admin route
 //app.get("/users", userHandler.HandlerGetUsers(users))

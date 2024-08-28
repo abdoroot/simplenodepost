@@ -98,7 +98,7 @@ export function isValidToken(token: string): boolean {
         }
         return false
     } catch (error: any) {
-        console.error('Token validation failed:', error.message);
+        console.log('Token validation failed:', error.message);
         return false
     }
 }

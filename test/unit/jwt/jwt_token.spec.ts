@@ -1,5 +1,5 @@
-import { setup } from "../setup"
-import { CreateJwtToken, isValidToken } from "../../src/handlers/userHandler"
+import { setup } from "../../setup"
+import { CreateJwtToken, isValidToken } from "../../../src/handlers/userHandler"
 
 describe("test jwt token", () => {
     setup()
