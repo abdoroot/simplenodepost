@@ -1,3 +1,3 @@
 # copy .envexample to .env
-# npm run test
-# npm run start
+# npm run test or make test
+# npm run start or make test
