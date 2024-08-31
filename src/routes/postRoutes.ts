@@ -2,8 +2,9 @@ import { Router } from "express";
 import { PostController } from "../controllers/postController";
 import { onlyUser } from "../middleware/auth";
 import pool from '../config/db';
+import logger from '../config/logger';
 
-const postController = new PostController(pool)
+const postController = new PostController(pool, logger)
 const postRouter = Router();
 
 postRouter.use(onlyUser);

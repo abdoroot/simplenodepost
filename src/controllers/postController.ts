@@ -1,17 +1,24 @@
 import { Request, Response } from "express";
 import { PostService } from "../services/postService";
 import { Pool } from "pg";
+import winston from 'winston';
+import { getRequestId } from "../utils/requestId";
 
 //todo: try catch in all handlers
 
 export class PostController {
     private postService: PostService;
 
-    constructor(pool: Pool) {
-        this.postService = new PostService(pool);
+    private logger: winston.Logger;
+
+    constructor(pool: Pool, logger: winston.Logger) {
+        this.logger = logger;
+        this.postService = new PostService(pool, this.logger);
     }
 
     getPosts = async (req: Request, res: Response) => {
+        const rid = getRequestId(req)
+        this.logger.info(`Request id=${rid} start PostController::getPosts`)
         try {
             let page: number = 0
             if (req.query.page) {
@@ -19,7 +26,9 @@ export class PostController {
             }
             const posts = await this.postService.getPosts(page);
             res.status(200).json(posts);
+            this.logger.info(`Request id=${rid} finish PostController::getPosts`)
         } catch (error: any) {
+            this.logger.error(`Request id=${rid} - Error getting posts: ${error.message}`);
             res.status(500).json({ message: error.message });
         }
     }

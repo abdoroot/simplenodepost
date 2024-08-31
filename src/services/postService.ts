@@ -1,15 +1,20 @@
 import { Pool } from 'pg';
 import { Post } from "../models/postModel";
+import winston from 'winston';
 
 export class PostService {
     private pool: Pool;
 
-    constructor(pool: Pool) {
+    private logger: winston.Logger;
+
+    constructor(pool: Pool, logger: winston.Logger) {
         this.pool = pool
+        this.logger = logger
     }
 
     async getPosts(page: number = 1): Promise<Post[]> {
         try {
+            //todo:log database request id using logger
             const limit = 8
             page = isNaN(page) || page <= 0 ? 1 : page;
 
