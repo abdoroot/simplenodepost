@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 
 export function setRequestId(req: Request, resp: Response, next: NextFunction) {
-    let requestId = uuidv4()
+    const requestId = uuidv4()
     resp.setHeader('X-Request-ID', requestId)
     return next();
 }

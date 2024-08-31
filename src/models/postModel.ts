@@ -8,5 +8,5 @@ export type Post = {
     status: postStatus
     title: string
     author: string
-    Content: string
+    content: string
 }
