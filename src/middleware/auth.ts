@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { isValidToken } from '../handlers/userHandler'
+import { isValidToken } from '../utils/jwt'
 
 export function onlyUser(req: Request, resp: Response, next: NextFunction) {
     let apiToken = req.header('Authorization')

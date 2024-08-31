@@ -1,11 +1,10 @@
 import { setup } from "../../setup"
-import { CreateJwtToken, isValidToken } from "../../../src/handlers/userHandler"
+import { CreateJwtToken, isValidToken } from "../../../src/utils/jwt"
 
 describe("test jwt token", () => {
 
     beforeAll(() => {
-        //load dotenv file
-        setup()
+        setup() //load dotenv file
     });
 
     let token = CreateJwtToken(1, "1h")

@@ -1,8 +1,9 @@
-import * as dotenv from "dotenv"
+import * as dotenv from 'dotenv';
 
 export function setup() {
-    if (!dotenv.config()) {
-        console.log("error loading env file")
-        process.exit(1)
+    const result = dotenv.config();
+    if (result.error) {
+        console.error("Error loading .env file:", result.error.message);
+        process.exit(1);
     }
 }

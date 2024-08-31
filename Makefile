@@ -7,5 +7,5 @@ test-cover:
 lint:
 	npx eslint .	
 
-
+.PHONY: run test test-cover lint
 
