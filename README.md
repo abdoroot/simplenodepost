@@ -4,4 +4,4 @@
     npm run test or make test
 4. Start the Application
    ```bash
-    npm run start or make test
+    npm run start or make
